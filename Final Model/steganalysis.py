@@ -1,6 +1,10 @@
 import numpy as np
 from scipy import ndimage
 
+########################################################################
+# Same code for feature extraction as that in 'Image Preprocessing.py' #
+########################################################################
+
 def getPlaneBits(planeId, binary_image):
     return [int(b[planeId]) for b in binary_image]
 
@@ -96,19 +100,26 @@ def getFeatures(filename):
 
     return features
 
+######################################
+# Image Preprocessing code ends here #
+######################################
 
 from sklearn.externals import joblib
 from os import sys
 
+# Path of input image file
 filename = sys.argv[1]
 
+# Load persisted models
 models = [joblib.load('original_abc.pkl'), joblib.load('original_mlp.pkl'),
           joblib.load('good_abc.pkl'), joblib.load('good_mlp.pkl')]
 
+# Extract CF feature set for chosen file
 features = [getFeatures(filename)]
 
 preds = []
 
+# Let each model make a prediction
 for model in models:
     preds.append(model.predict(features))
 
@@ -120,6 +131,7 @@ for pred in preds:
     else:
         cover_count += 1
 
+# Assign a label based on majority vote
 if cover_count > steg_count:
     print("No steganography detected in the image.")
 else:
