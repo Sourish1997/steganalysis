@@ -120,19 +120,23 @@ features = [getFeatures(filename)]
 preds = []
 
 # Let each model make a prediction
-for model in models:
-    preds.append(model.predict(features))
+try:
+    for model in models:
+        preds.append(model.predict(features))
+    
+    cover_count = 0
+    steg_count = 0
+    for pred in preds:
+        if pred[0] == 1:
+            steg_count += 1
+        else:
+            cover_count += 1
 
-cover_count = 0
-steg_count = 0
-for pred in preds:
-    if pred[0] == 1:
-        steg_count += 1
+    # Assign a label based on majority vote
+    if cover_count > steg_count:
+        print("No steganography detected in the image.")
     else:
-        cover_count += 1
+        print("Steganography detected in the image!")
+except ValueError:
+    print("The image is either too light, or too dark to make a prediction with reasonable confidence.")
 
-# Assign a label based on majority vote
-if cover_count > steg_count:
-    print("No steganography detected in the image.")
-else:
-    print("Steganography detected in the image!")
