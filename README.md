@@ -19,4 +19,4 @@ I have included samples for both the original images in the BOSSbase dataset as 
 matching. The steg images have been generated using the tool available at https://github.com/daniellerch/aletheia. The command 
 used to generate the steg images is:
 
-$ python aletheia.py lsbm-sim bossbase 0.40 bossbase_lsb
+*$ python aletheia.py lsbm-sim bossbase 0.40 bossbase_lsb*
