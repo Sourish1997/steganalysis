@@ -15,8 +15,7 @@ I have used the BOSSbase dataset as my base dataset. It is available for downloa
 
 http://dde.binghamton.edu/download/ImageDB/BOSSbase_1.01.zip
 
-I have included samples for both the original images in the BOSSbase dataset as well as the images after performing LSB 
-matching. The steg images have been generated using the tool available at https://github.com/daniellerch/aletheia. The command 
-used to generate the steg images is:
+I have also included samples for both the original images in the BOSSbase dataset as well as the images after performing LSB 
+matching. The steg images have been generated using the tool available at https://github.com/daniellerch/aletheia. Use the following command to generate the steg images:
 
 *$ python aletheia.py lsbm-sim bossbase 0.40 bossbase_lsb*
